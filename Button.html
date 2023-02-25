@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+        <script src="https://kit.fontawesome.com/5687374ac8.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Button</h1>
+    
+    <div id="result">0</div>
+
+    <input type="button" value="+" id="pBtn">
+    <input type="button" value="-" id="mBtn">
+
+
+    <h1>Album</h1>
+
+    <!-- 사진이 추가되는 div태그 -->
+    <div id="aimg">
+        <img src="images/catty01.png" id="catimages">
+    </div>
+
+    <button class="fa-solid fa-arrow-left" id="lBtn"></button>
+    <button class="fa-solid fa-arrow-right" id="rBtn"></button>
+
+
+
+    <!-- Album -->
+    <script>
+        let n = 1;
+        
+        $('#rBtn').click(() => {
+            
+            n ++;
+
+            if (n > 9) {
+                n = 1;
+            }
+            
+            $('#catimages').remove();
+            $('#aimg').html($('#aimg').html() + `<img src="images/catty0${n}.png" id="catimages">`);
+            
+            
+        });
+
+
+        $('#lBtn').click(() => {
+
+            n --;
+            
+            if (n < 1) {
+                n = 9;
+            }
+
+            $('#catimages').remove();
+            $('#aimg').html($('#aimg').html() + `<img src="images/catty0${n}.png" id="catimages">`);
+            
+        });
+    </script>
+
+
+
+
+    <!-- Button -->
+    <script>
+
+        const resultNumber = document.getElementById('result');
+        number = parseInt(resultNumber.innerText);
+
+
+        //DOM
+        window.document.getElementById('pBtn').onclick = function() {
+            
+            number = number + 1;
+
+            resultNumber.innerText = number;
+
+        }
+
+        //JQuery
+        $('#mBtn').click(() => {
+            
+            number = number - 1;
+
+            resultNumber.innerText = number;  
+
+            // $('#mBtn').val() 흠...
+
+        });            
+
+    </script>
+    
+
+
+
+</body>
+</html>
