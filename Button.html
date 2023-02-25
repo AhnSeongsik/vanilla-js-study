@@ -1,102 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-        <script src="https://kit.fontawesome.com/5687374ac8.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+  <script src="https://kit.fontawesome.com/5687374ac8.js" crossorigin="anonymous"></script>
+  <title>Document</title>
 </head>
+
 <body>
-    
-    <h1>Button</h1>
-    
-    <div id="result">0</div>
 
-    <input type="button" value="+" id="pBtn">
-    <input type="button" value="-" id="mBtn">
+  <h1>Button</h1>
 
+  <div id="result">0</div>
 
-    <h1>Album</h1>
-
-    <!-- 사진이 추가되는 div태그 -->
-    <div id="aimg">
-        <img src="images/catty01.png" id="catimages">
-    </div>
-
-    <button class="fa-solid fa-arrow-left" id="lBtn"></button>
-    <button class="fa-solid fa-arrow-right" id="rBtn"></button>
+  <input type="button" value="+" id="pBtn">
+  <input type="button" value="-" id="mBtn">
 
 
+  <h1>Album</h1>
 
-    <!-- Album -->
-    <script>
-        let n = 1;
-        
-        $('#rBtn').click(() => {
-            
-            n ++;
+  <!-- 사진이 추가되는 div태그 -->
+  <div id="aimg">
+    <img src="images/catty01.png" id="catimages">
+  </div>
 
-            if (n > 9) {
-                n = 1;
-            }
-            
-            $('#catimages').remove();
-            $('#aimg').html($('#aimg').html() + `<img src="images/catty0${n}.png" id="catimages">`);
-            
-            
-        });
+  <button class="fa-solid fa-arrow-left" id="lBtn"></button>
+  <button class="fa-solid fa-arrow-right" id="rBtn"></button>
 
+  <!-- Album -->
 
-        $('#lBtn').click(() => {
+  <script>
+    // 일단 jquery 를 쓰면 참 간단하게 동작하는데 jquery 를 사용하지않고 각각의 button 에 evnet 를 달아서 다시 한번 구현해보세용
+    // count 또한 마찬가지 입니다.
+    // 그리고 일반적으로 html 과 javascript 는 들여쓰기를 2칸으로 하는걸 암묵적인 룰로 하고있습니다.
+    // vscode 하단에 spaces 를 2로 바꾸고 tab size 도 2로 바꿔서 하면 됩니다~
 
-            n --;
-            
-            if (n < 1) {
-                n = 9;
-            }
+    let n = 1;
+    $('#rBtn').click(() => {
 
-            $('#catimages').remove();
-            $('#aimg').html($('#aimg').html() + `<img src="images/catty0${n}.png" id="catimages">`);
-            
-        });
-    </script>
+      // n += 1;
+      // 위에꺼나 아래꺼나 상관은없는데 전 보통 위에 방식을 많이 사용합니다. 취향이에요 ~~
+      n++;
+      if (n > 9) {
+        n = 1;
+      }
+
+      $('#catimages').remove();
+      $('#aimg').html($('#aimg').html() + `<img src="images/catty0${n}.png" id="catimages">`);
+    });
 
 
+    $('#lBtn').click(() => {
+      n--;
+
+      if (n < 1) {
+        n = 9;
+      }
+
+      $('#catimages').remove();
+      $('#aimg').html($('#aimg').html() + `<img src="images/catty0${n}.png" id="catimages">`);
+    });
+  </script>
+
+<!-- Button -->
+  <script>
+
+    const resultNumber = document.getElementById('result');
+    // 이부분에 let 이 빠져있네요.
+    // 코드는 문제없이 동작하겠지만 변수를 선언할때 불변이라면 const, 변하는 값이면 let 으로 선언하여 사용하여야합니다.
+    // 일반적으로 숫자, 문자, bool type 들은 let 으로 많이들 선언하고 값을 변경해가면서 사용하고 
+    // list, object 들은 const 로 선언한후 해당 객체에 값을 채워서 사용하는식으로 사용합니다.
+
+    let number = parseInt(resultNumber.innerText);
 
 
-    <!-- Button -->
-    <script>
+    //DOM
+    window.document.getElementById('pBtn').onclick = function () {
+      number = number + 1;
+      resultNumber.innerText = number;
+    }
 
-        const resultNumber = document.getElementById('result');
-        number = parseInt(resultNumber.innerText);
+    //JQuery
+    $('#mBtn').click(() => {
+      number = number - 1;
+      resultNumber.innerText = number;
+      // $('#mBtn').val() 흠...
 
+    });
 
-        //DOM
-        window.document.getElementById('pBtn').onclick = function() {
-            
-            number = number + 1;
-
-            resultNumber.innerText = number;
-
-        }
-
-        //JQuery
-        $('#mBtn').click(() => {
-            
-            number = number - 1;
-
-            resultNumber.innerText = number;  
-
-            // $('#mBtn').val() 흠...
-
-        });            
-
-    </script>
-    
-
-
-
+  </script>
 </body>
 </html>
