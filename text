@@ -1,0 +1,122 @@
+자 기본적인 git 사용법을 알려줄게요
+
+일단 main 브랜치가 github 의 default 브랜치니까 main 브랜치를 기준으로 하는거에요
+
+지금 성식씨 github 은 이런구조에요
+
+main    -> master
+        -> QA
+
+무슨소리냐면 checkout 이라는거는 특정 브랜치를 기준으로 새로운 브랜치를 만드는거에요
+
+그러면 
+main -> master 까지는 맞는데
+master 브랜치를 main 에 머지를 해줘야 다른사람들이 코드를 받아서 협업할때 main 브랜치를 받아서 사용할수있어요
+음... 그림이 있으면 좀 편한데
+지금 터미널에 제가 뭘좀 입력할건데 보이는지 확인해주세용 > 넵
+
+혹시 터미널 한번 열러줄래요?
+
+지금 보면 main 도 있고 master 도 있고 qna 도 있고 first 도 있죠?
+이거 github 들어가면 branch 라고 잇을거에요
+
+https://github.com/AhnSeongsik/NewProject/branches
+여기 한번 들어가봐용 
+여기서 여기서 그 branch 옆에 compare 만 있어요 아니면 create pull request 도 있어요?
+좋아좋아
+그 뉴 풀리퀘스트 눌러봐요
+네네 
+맞아용
+만들고 pull requests 항목눌러보면 만든거 나올거에요
+거기서 머지버튼 있는데 일단 머지하세용
+머지하고나면 말해줘용~
+
+혹시 풀리퀘스트는 만들었어요?
+그 어... 제 계정을 콜라보레이터로 등록해주세용
+그러면 제가 만들고 머지할수있어요
+lhs950204@naver.com
+
+지금 보고있는데 뭔가 이상한데 지금...AhnSeongsik
+잠깐만용
+
+https://github.com/AhnSeongsik/NewProject/compare/main...master
+이링크 들어가면 뭐나와요?
+아냐아냐... 리포이름이 test 면 어떻게해용..AhnSeongsik아니야
+
+저거말고 리포 이름은 실제로 어떤거를 쓰는건지를 올려야해요
+예를들어 js study 아니면 뭐 다른것들 뭐가 조을라나
+
+vanilla-js-study 로 다시 만들어봐용!
+https://github.com/AhnSeongsik/vanilla-js-study
+내계정똑같이 콜라보레이터로 등록해줘용~
+
+기존에 만들었던 리포들은 삭제할까요...?
+
+넹넹
+삭제해도 되용
+
+자 그전에 일단 정리먼저 합시다
+혹시 지금 폴더에 .git 폴더 지워줄래용??
+지웠습니다!
+
+지금보면 main 브랜치에 바로 올렸어용
+
+뭔지는 모르겠으나 다른 repository 로 인식해서 push 가 계속 안되고있었는데 일단 올렸어용
+
+자 이제 작업을 어떻게 하느냐
+
+먼저 main 브랜치로 가서 브랜치를 새로 만들어요
+
+git checkout -b 브랜치이름
+만들었으면 여기서 작업을하고 커밋을 해요
+한개 간단하게 보여줄게요
+
+지금은 간단하게 예시로 qna 물어볼거를 적은거니까 실제로는 성식씨가 작업하고 커밋한 브랜치를 push 하는거에요
+
+자 지금 작업하던 브랜치를 github 에 올린거에요
+홈페이지 들어가보면 branch 하나 더 있을거에요
+확인했습니다!
+
+여기서 new pull request 눌러봐
+create pull request 누르면 되는건가요?
+
+네네 맞아요 근데 내가 실수로 눌렀어요...
+지금 보면 내가 request 를 만든거로 나오는데 잠깐만요
+한번 성식씨가 다시 만들어보세요
+어 클로즈드네...?
+잠만
+그러면 pull requests 눌러서 new 누르고 create 해봐용
+잘 안되용??
+넵 new를 못찾고있는거같습니다
+https://github.com/AhnSeongsik/vanilla-js-study/pulls
+여기서 오른쪽 위에 new pull request
+거기서 compare 에서 issue_qna 누르고 한번 create pull request 눌러봐용
+
+어디서 막혔어용...?
+
+어 다 안지워도 괜찮아요 ㅎㅎ
+
+자 저 화면에서 write 하는것도 좋고 물어볼게 있으면 별도로 지금처럼 파일로 올려줘도 좋고
+다 완료되면 create pull requeset 누르면 되용 한번 눌러ㅗ봐용
+
+올라왔다 자 그러면 성식씨가 해당 pull request 를 들어가서 merge pull request 눌러보세요
+
+그거 누르면 main 브랜치에 머지되는거에요
+자 이후에 delete branch 누르면 되용
+올린 브랜치가 계속 쌓이면 너무 많아지니까 올리고 지우고 하면 되용
+좋아좋아
+그러면 서버쪽에서는 머지가 된거니까 성식씨 컴터도 머지를 해야해요
+
+어떻게 하냐면
+git checkout main
+git pull origin main
+
+자 이러면 로컬에 qna.txt 파일이 main 브랜치에 생기게 되요
+그러면 다른사람도 작업하다가 git pull origin main 하면 저 qna.txt 파일을 다 다운 받게되는거에요
+얼추 이해가용??
+넵 어느정도 이해를 한것 
+
+자 그럼 이제 간단하게 코드를 리뷰해봅시다
+아 코드리뷰는 내가 따로보고 브랜치 새로 만들어서 올려줄게요 코멘트랑 보고 추가로 물어볼거 잇으면 물어보고 하면되용
+좀 쉬고있어요 ㅎㅎ
+넵
