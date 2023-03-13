@@ -15,20 +15,40 @@
   <h1>Button</h1>
 
   <div id="result">0</div>
-
+  
   <input type="button" value="+" id="pBtn">
   <input type="button" value="-" id="mBtn">
-
-
+  
+  
   <h1>Album</h1>
-
+  
   <!-- 사진이 추가되는 div태그 -->
   <div id="aimg">
     <img src="images/catty01.png" id="catimages">
   </div>
-
+  
   <button class="fa-solid fa-arrow-left" id="lBtn"></button>
   <button class="fa-solid fa-arrow-right" id="rBtn"></button>
+  
+
+
+  <!-- 추가 작업 -->
+  <h1>Button2</h1>
+  
+  <div id="result2">0</div>
+  
+  <input type="button" value="+" id="pBtn2">
+  <input type="button" value="-" id="mBtn2">
+  
+  <h1>Album2</h1>
+  
+  <div id="catimg">
+    <img src="images/catty01.png" id="catimages2">
+  </div>
+  
+  <button class="fa-solid fa-arrow-left" id="lBtn2"></button>
+  <button class="fa-solid fa-arrow-right" id="rBtn2"></button>
+  
 
   <!-- Album -->
 
@@ -87,10 +107,63 @@
     $('#mBtn').click(() => {
       number = number - 1;
       resultNumber.innerText = number;
-      // $('#mBtn').val() 흠...
 
     });
 
   </script>
+
+  
+  <!-- Button2 -->
+  <script>
+
+    const result2 = document.getElementById('result2');
+
+    let number2 = parseInt(result2.innerText);
+
+    window.document.getElementById('pBtn2').onclick = function () {
+      number2 = number2 + 1;
+      result2.innerText = number2;
+    }
+
+    window.document.getElementById('mBtn2').onclick = function () {
+      number2 = number2 - 1;
+      result2.innerText = number2;
+    }
+
+  </script>
+
+  <!-- Album2 -->
+  <script>
+
+    let num = 09;
+    
+    window.document.getElementById('lBtn2').onclick = function () {
+      
+      num -= 1;
+
+      if (num < 1) {
+        num = 9;
+      }
+
+      window.document.getElementById('catimages2').remove();
+      window.document.getElementById('catimg').innerHTML=`<img src="images/catty0${num}.png" id="catimages2">`;
+      
+    }
+    
+    window.document.getElementById('rBtn2').onclick = function () {
+      
+      num += 1;
+
+      if (num > 9) {
+        num = 1;
+      }
+
+      window.document.getElementById('catimages2').remove();
+      window.document.getElementById('catimg').innerHTML=`<img src="images/catty0${num}.png" id="catimages2">`;
+
+    }
+
+  </script>
+
 </body>
 </html>
