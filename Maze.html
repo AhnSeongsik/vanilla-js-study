@@ -18,24 +18,29 @@
 <body onkeyup="KeyUp(event.keyCode)">
 
   <h1>Count : <span id="cnt">0</span></h1>
-
+  
 </body>
 
 <!-- table 만들기 -->
 <script>
+  // qna
+  // 테이블이 안만들어집니다... 이유를 잘 모르겠습니다.
+  const tbl = document.createElement('table');
+  const tbltr = document.createElement('tr');
+  const tbltd = document.createElement('td');
+
   function Maze() {
-    window.document.write('<table id="tbl">');
-    for (let j = 0; j < 20; j++) {
-      window.document.write('<tr>');
-      for (let i = 0; i < 20; i++) {
-        window.document.write('<td></td>');
+    document.body.appendChild(tbl);
+      for (let j=0; j<20; j++) {
+      tbl.appendChild(tbltr);
+        for (let i=0; i<20; i++) {
+          tbltr.appendChild(tbltd);
+        }    
       }
-      window.document.write('</tr>');
-    }
-    window.document.write('</table>');
-  }
+   }
 
   Maze();
+  
 </script>
 
 <!-- keyCode -->
@@ -43,14 +48,16 @@
   let num = 0;
   let index = 1;
 
+  // qna
+  // innerHTML 사용 전 null 값 예외처리 하는 방법이 이게 맞는지.. 궁금합니다
+  let cNum = document.querySelector('#cnt');
+
   function KeyUp(code) {
-    if (code == 37 || code == 38 || code == 39 || code == 40) {
+    if (code == 37 || code == 38 || code == 39 || code == 40 && cNum != null) {
       num += 1;
-      window.document.getElementById('cnt').innerHTML = num;
+      cNum.innerHTML = num;
       if (code == 39) {
         index ++;
-        // 외.. 값은 오르는데 배경색은 안변하니....
-        alert(index);
       }
     }
   }

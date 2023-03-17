@@ -19,7 +19,6 @@
   <input type="button" value="+" id="pBtn">
   <input type="button" value="-" id="mBtn">
   
-  
   <h1>Album</h1>
   
   <!-- 사진이 추가되는 div태그 -->
@@ -29,16 +28,16 @@
   
   <button class="fa-solid fa-arrow-left" id="lBtn"></button>
   <button class="fa-solid fa-arrow-right" id="rBtn"></button>
-  
-
 
   <!-- 추가 작업 -->
   <h1>Button2</h1>
   
   <div id="result2">0</div>
   
-  <input type="button" value="+" id="pBtn2">
-  <input type="button" value="-" id="mBtn2">
+  <!-- qna -->
+  <!-- 알려주신 방법은 onclick="onClickPBtn" 이여서 변수를 호출하고 그 변수안에 함수(화살표 함수?)가 들어가는 형태인 것 같은데.. 동작이 되지않아서 함수로 호출했습니다.. -->
+  <button onclick="onClickPBtn()" id="pBtn2">+</button>
+  <button onclick="onClickMBtn()" id="mBtn2">-</button>
   
   <h1>Album2</h1>
   
@@ -46,23 +45,15 @@
     <img src="images/catty01.png" id="catimages2">
   </div>
   
-  <button class="fa-solid fa-arrow-left" id="lBtn2"></button>
-  <button class="fa-solid fa-arrow-right" id="rBtn2"></button>
-  
+  <button class="fa-solid fa-arrow-left" onclick="onClickNAlbum()" id="lBtn2"></button>
+  <button class="fa-solid fa-arrow-right" onclick="onClickPAlbum()" id="rBtn2"></button>
 
   <!-- Album -->
-
   <script>
-    // 일단 jquery 를 쓰면 참 간단하게 동작하는데 jquery 를 사용하지않고 각각의 button 에 evnet 를 달아서 다시 한번 구현해보세용
-    // count 또한 마찬가지 입니다.
-    // 그리고 일반적으로 html 과 javascript 는 들여쓰기를 2칸으로 하는걸 암묵적인 룰로 하고있습니다.
-    // vscode 하단에 spaces 를 2로 바꾸고 tab size 도 2로 바꿔서 하면 됩니다~
 
     let n = 1;
     $('#rBtn').click(() => {
 
-      // n += 1;
-      // 위에꺼나 아래꺼나 상관은없는데 전 보통 위에 방식을 많이 사용합니다. 취향이에요 ~~
       n++;
       if (n > 9) {
         n = 1;
@@ -89,13 +80,8 @@
   <script>
 
     const resultNumber = document.getElementById('result');
-    // 이부분에 let 이 빠져있네요.
-    // 코드는 문제없이 동작하겠지만 변수를 선언할때 불변이라면 const, 변하는 값이면 let 으로 선언하여 사용하여야합니다.
-    // 일반적으로 숫자, 문자, bool type 들은 let 으로 많이들 선언하고 값을 변경해가면서 사용하고 
-    // list, object 들은 const 로 선언한후 해당 객체에 값을 채워서 사용하는식으로 사용합니다.
 
     let number = parseInt(resultNumber.innerText);
-
 
     //DOM
     window.document.getElementById('pBtn').onclick = function () {
@@ -111,58 +97,55 @@
     });
 
   </script>
-
   
   <!-- Button2 -->
   <script>
 
-    const result2 = document.getElementById('result2');
+    const result2 = document.querySelector('#result2');
 
     let number2 = parseInt(result2.innerText);
 
-    window.document.getElementById('pBtn2').onclick = function () {
+    const onClickPBtn = () => {
       number2 = number2 + 1;
       result2.innerText = number2;
-    }
+    };
 
-    window.document.getElementById('mBtn2').onclick = function () {
+    const onClickMBtn = () => {
       number2 = number2 - 1;
       result2.innerText = number2;
-    }
+    };
 
   </script>
 
   <!-- Album2 -->
   <script>
 
-    let num = 09;
+    let num = 1;
     
-    window.document.getElementById('lBtn2').onclick = function () {
-      
+    const onClickNAlbum = () => {
       num -= 1;
 
       if (num < 1) {
-        num = 9;
+      num = 9;
       }
 
-      window.document.getElementById('catimages2').remove();
-      window.document.getElementById('catimg').innerHTML=`<img src="images/catty0${num}.png" id="catimages2">`;
-      
-    }
-    
-    window.document.getElementById('rBtn2').onclick = function () {
-      
+      document.querySelector('#catimages2').remove();
+      document.querySelector('#catimg').innerHTML=`<img src="images/catty0${num}.png" id="catimages2">`;  
+
+    };
+
+    const onClickPAlbum = () => {
       num += 1;
 
       if (num > 9) {
-        num = 1;
+      num = 1;
       }
 
-      window.document.getElementById('catimages2').remove();
-      window.document.getElementById('catimg').innerHTML=`<img src="images/catty0${num}.png" id="catimages2">`;
+      document.querySelector('#catimages2').remove();
+      document.querySelector('#catimg').innerHTML=`<img src="images/catty0${num}.png" id="catimages2">`;  
 
-    }
-
+    };
+        
   </script>
 
 </body>
