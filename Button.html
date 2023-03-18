@@ -1,102 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-        <script src="https://kit.fontawesome.com/5687374ac8.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+  <script src="https://kit.fontawesome.com/5687374ac8.js" crossorigin="anonymous"></script>
+  <title>Document</title>
 </head>
+
 <body>
+
+  <h1>Button</h1>
+
+  <div id="result">0</div>
+  
+  <input type="button" value="+" id="pBtn">
+  <input type="button" value="-" id="mBtn">
+  
+  <h1>Album</h1>
+  
+  <!-- 사진이 추가되는 div태그 -->
+  <div id="aimg">
+    <img src="images/catty01.png" id="catimages">
+  </div>
+  
+  <button class="fa-solid fa-arrow-left" id="lBtn"></button>
+  <button class="fa-solid fa-arrow-right" id="rBtn"></button>
+
+  <!-- 추가 작업 -->
+  <h1>Button2</h1>
+  
+  <div id="result2">0</div>
+  
+  <!-- qna -->
+  <!-- 알려주신 방법은 onclick="onClickPBtn" 이여서 변수를 호출하고 그 변수안에 함수(화살표 함수?)가 들어가는 형태인 것 같은데.. 동작이 되지않아서 함수로 호출했습니다.. -->
+  <!-- 성식씨 말이 맞아용 제가 다른거랑 햇갈렸네요 ㅠ 아래처럼 하시면 되용! -->
+  <button onclick="onClickPBtn()" id="pBtn2">+</button>
+  <button onclick="onClickMBtn()" id="mBtn2">-</button>
+  
+  <h1>Album2</h1>
+  
+  <div id="catimg">
+    <img src="images/catty01.png" id="catimages2">
+  </div>
+  
+  <button class="fa-solid fa-arrow-left" onclick="onClickNAlbum()" id="lBtn2"></button>
+  <button class="fa-solid fa-arrow-right" onclick="onClickPAlbum()" id="rBtn2"></button>
+
+  <!-- Album -->
+  <script>
+
+    let n = 1;
+    $('#rBtn').click(() => {
+
+      n++;
+      if (n > 9) {
+        n = 1;
+      }
+
+      $('#catimages').remove();
+      $('#aimg').html($('#aimg').html() + `<img src="images/catty0${n}.png" id="catimages">`);
+    });
+
+
+    $('#lBtn').click(() => {
+      n--;
+
+      if (n < 1) {
+        n = 9;
+      }
+
+      $('#catimages').remove();
+      $('#aimg').html($('#aimg').html() + `<img src="images/catty0${n}.png" id="catimages">`);
+    });
+  </script>
+
+<!-- Button -->
+  <script>
+
+    const resultNumber = document.getElementById('result');
+
+    let number = parseInt(resultNumber.innerText);
+
+    //DOM
+    window.document.getElementById('pBtn').onclick = function () {
+      number = number + 1;
+      resultNumber.innerText = number;
+    }
+
+    //JQuery
+    $('#mBtn').click(() => {
+      number = number - 1;
+      resultNumber.innerText = number;
+
+    });
+
+  </script>
+  
+  <!-- Button2 -->
+  <script>
+
+    const result2 = document.querySelector('#result2');
+
+    let number2 = parseInt(result2.innerText);
+
+    const onClickPBtn = () => {
+      number2 = number2 + 1;
+      result2.innerText = number2;
+    };
+
+    const onClickMBtn = () => {
+      number2 = number2 - 1;
+      result2.innerText = number2;
+    };
+
+  </script>
+
+  <!-- Album2 -->
+  <script>
+
+    let num = 1;
     
-    <h1>Button</h1>
-    
-    <div id="result">0</div>
+    const onClickNAlbum = () => {
+      num -= 1;
 
-    <input type="button" value="+" id="pBtn">
-    <input type="button" value="-" id="mBtn">
+      if (num < 1) {
+      num = 9;
+      }
 
+      document.querySelector('#catimages2').remove();
+      document.querySelector('#catimg').innerHTML=`<img src="images/catty0${num}.png" id="catimages2">`;  
 
-    <h1>Album</h1>
+    };
 
-    <!-- 사진이 추가되는 div태그 -->
-    <div id="aimg">
-        <img src="images/catty01.png" id="catimages">
-    </div>
+    const onClickPAlbum = () => {
+      num += 1;
 
-    <button class="fa-solid fa-arrow-left" id="lBtn"></button>
-    <button class="fa-solid fa-arrow-right" id="rBtn"></button>
+      if (num > 9) {
+      num = 1;
+      }
 
+      document.querySelector('#catimages2').remove();
+      document.querySelector('#catimg').innerHTML=`<img src="images/catty0${num}.png" id="catimages2">`;  
 
-
-    <!-- Album -->
-    <script>
-        let n = 1;
+    };
         
-        $('#rBtn').click(() => {
-            
-            n ++;
-
-            if (n > 9) {
-                n = 1;
-            }
-            
-            $('#catimages').remove();
-            $('#aimg').html($('#aimg').html() + `<img src="images/catty0${n}.png" id="catimages">`);
-            
-            
-        });
-
-
-        $('#lBtn').click(() => {
-
-            n --;
-            
-            if (n < 1) {
-                n = 9;
-            }
-
-            $('#catimages').remove();
-            $('#aimg').html($('#aimg').html() + `<img src="images/catty0${n}.png" id="catimages">`);
-            
-        });
-    </script>
-
-
-
-
-    <!-- Button -->
-    <script>
-
-        const resultNumber = document.getElementById('result');
-        number = parseInt(resultNumber.innerText);
-
-
-        //DOM
-        window.document.getElementById('pBtn').onclick = function() {
-            
-            number = number + 1;
-
-            resultNumber.innerText = number;
-
-        }
-
-        //JQuery
-        $('#mBtn').click(() => {
-            
-            number = number - 1;
-
-            resultNumber.innerText = number;  
-
-            // $('#mBtn').val() 흠...
-
-        });            
-
-    </script>
-    
-
-
+  </script>
 
 </body>
 </html>
