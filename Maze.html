@@ -15,7 +15,7 @@
   </style>
 </head>
 
-<body onkeyup="KeyUp(event.keyCode)">
+<body onkeyup="keyUp(event.keyCode)">
 
   <h1>Count : <span id="cnt">0</span></h1>
   
@@ -24,19 +24,20 @@
 <!-- table 만들기 -->
 <script>
   // qna
-  // 테이블이 안만들어집니다... 이유를 잘 모르겠습니다.
+  // 한번 만들어진거를 한번 붙였는데 그걸 다시 또 붙이고 해서 안만들어 진거에용
+  // 새로 만들어서 붙여야 합니다.
   const tbl = document.createElement('table');
-  const tbltr = document.createElement('tr');
-  const tbltd = document.createElement('td');
-
+  
   function Maze() {
     document.body.appendChild(tbl);
       for (let j=0; j<20; j++) {
-      tbl.appendChild(tbltr);
-        for (let i=0; i<20; i++) {
-          tbltr.appendChild(tbltd);
-        }    
-      }
+        const tbltr = document.createElement('tr');
+        tbl.appendChild(tbltr);
+          for (let i=0; i<20; i++) {
+            const tbltd = document.createElement('td');
+            tbltr.appendChild(tbltd);
+          }    
+        }
    }
 
   Maze();
@@ -51,8 +52,11 @@
   // qna
   // innerHTML 사용 전 null 값 예외처리 하는 방법이 이게 맞는지.. 궁금합니다
   let cNum = document.querySelector('#cnt');
+  if (cNum) {
+    // cNum 이 존재할때 동작해야 하는 코드를 넣으면 됩니다.
+  }
 
-  function KeyUp(code) {
+  function keyUp(code) {
     if (code == 37 || code == 38 || code == 39 || code == 40 && cNum != null) {
       num += 1;
       cNum.innerHTML = num;
